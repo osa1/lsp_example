@@ -10,6 +10,7 @@ use std::sync::Mutex;
 
 #[derive(Debug)]
 struct Backend {
+    #[allow(unused)]
     client: Client,
     log_file: Mutex<File>,
 }
@@ -38,9 +39,6 @@ impl LanguageServer for Backend {
 
     async fn initialized(&self, _: InitializedParams) {
         writeln!(self.log_file.lock().unwrap(), "initialized").unwrap();
-        self.client
-            .log_message(MessageType::INFO, "server initialized!")
-            .await;
     }
 
     async fn shutdown(&self) -> Result<()> {
