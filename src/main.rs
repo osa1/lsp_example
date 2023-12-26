@@ -415,12 +415,15 @@ impl LanguageServer for Backend {
 
 fn main() {
     let rt = tokio::runtime::Runtime::new().unwrap();
+    let log_file_path = {
+        let mut path = dirs::home_dir().unwrap();
+        path.push("lsp_logs");
+        path
+    };
+    let log_file = File::create(log_file_path).unwrap();
     rt.block_on(async {
         let stdin = tokio::io::stdin();
         let stdout = tokio::io::stdout();
-
-        let log_file = File::create("/home/omer/lsp_test_logs").unwrap();
-
         let (service, socket) = LspService::new(|client| Backend {
             client,
             log_file: Mutex::new(log_file),
