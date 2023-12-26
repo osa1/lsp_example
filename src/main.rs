@@ -413,16 +413,18 @@ impl LanguageServer for Backend {
     }
 }
 
-#[tokio::main]
-async fn main() {
-    let stdin = tokio::io::stdin();
-    let stdout = tokio::io::stdout();
+fn main() {
+    let rt = tokio::runtime::Runtime::new().unwrap();
+    rt.block_on(async {
+        let stdin = tokio::io::stdin();
+        let stdout = tokio::io::stdout();
 
-    let log_file = File::create("/home/omer/lsp_test_logs").unwrap();
+        let log_file = File::create("/home/omer/lsp_test_logs").unwrap();
 
-    let (service, socket) = LspService::new(|client| Backend {
-        client,
-        log_file: Mutex::new(log_file),
+        let (service, socket) = LspService::new(|client| Backend {
+            client,
+            log_file: Mutex::new(log_file),
+        });
+        Server::new(stdin, stdout, socket).serve(service).await;
     });
-    Server::new(stdin, stdout, socket).serve(service).await;
 }
