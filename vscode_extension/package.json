@@ -1,7 +1,9 @@
 {
     "name": "lsp-example",
     "version": "0.0.1",
-    "activationEvents": ["onLanguage:plaintext"],
+    "activationEvents": [
+        "onLanguage:plaintext"
+    ],
     "main": "./extension.js",
     "scripts": {},
     "engines": {
@@ -9,5 +11,8 @@
     },
     "dependencies": {
         "vscode-languageclient": "^9.0.1"
+    },
+    "devDependencies": {
+        "@vscode/vsce": "^2.22.0"
     }
 }

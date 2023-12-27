@@ -1,3 +1,3 @@
 server/target
 vscode_extension/node_modules
-vscode_extension/package-lock.json
+vscode_extension/*.vsix
