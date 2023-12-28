@@ -19,9 +19,6 @@ to build and run.
 
 ## The setup
 
-Currently the only way to run this extension is from within VSCode itself,
-using a "run and debug" configuration.
-
 There are two hard-coded things in the project that you may want to modify
 before running it:
 
@@ -41,10 +38,12 @@ before running it:
 
 - Download JS dependencies with `(cd vscode_extension; npm install)`.
 
+  Note: This command does not install anything to your system, just downloads
+  dependencies in `node_modules` directory.
+
 ## Running
 
-I don't yet know how to actually install the extension. Currently the only way
-to run the extension is from within VSCode.
+### From within VSCode (for development)
 
 Run VSCode in the extension directory with `code .`. Navigate to "Run and
 Debug" tab on the left, then run the "Run extension" configuration.
@@ -55,6 +54,32 @@ VSCode you should see a line `Activating lsp-example...`. As you edit the file
 the log file at `$HOME/lsp_logs` will be updated by the server with the
 incoming messages and requests.
 
-## TODOs
+### Installing the extension
 
-- [ ] Figure out how to actually install the extension and document it.
+Note: if you're installing VSCode from the tarball from the [official site][1],
+you need to install the CLI as well (right below the tarball link). The `code`
+executable in instructions below should run the CLI, not the `code` executable
+from the tarball.
+
+In the `vscode_extension` directory: run
+
+1. `npm install`
+2. `npx vsce package`
+
+Step (2) will generate a file named `lsp-example-0.0.1.vsix`.
+
+After this, you have two options:
+
+2.1. `code --install-extension lsp-example-0.0.1.vsix`.
+
+     After this step you should see the extension listed in `code
+     --list-extensions`.
+
+2.2. Run `code`, switch to the "extensions" tab on the left, click on "..." on
+     the top right, select "Install from VSIX" and point it to
+     `lsp-example-0.0.1.vsix`.
+
+     After this step the extension should be listed in "Installed" section in
+     the extensions tab.
+
+[1]: https://code.visualstudio.com/download
