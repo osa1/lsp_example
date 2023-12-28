@@ -70,16 +70,16 @@ Step (2) will generate a file named `lsp-example-0.0.1.vsix`.
 
 After this, you have two options:
 
-2.1. `code --install-extension lsp-example-0.0.1.vsix`.
+1. `code --install-extension lsp-example-0.0.1.vsix`.
 
-     After this step you should see the extension listed in `code
-     --list-extensions`.
+   After this step you should see the extension listed in `code
+   --list-extensions`.
 
-2.2. Run `code`, switch to the "extensions" tab on the left, click on "..." on
-     the top right, select "Install from VSIX" and point it to
-     `lsp-example-0.0.1.vsix`.
+2. Run `code`, switch to the "extensions" tab on the left, click on "..." on
+   the top right, select "Install from VSIX" and point it to
+   `lsp-example-0.0.1.vsix`.
 
-     After this step the extension should be listed in "Installed" section in
-     the extensions tab.
+   After this step the extension should be listed in "Installed" section in
+   the extensions tab.
 
 [1]: https://code.visualstudio.com/download
